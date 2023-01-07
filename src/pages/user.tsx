@@ -1,5 +1,5 @@
 import * as React from "react";
-import type { HeadFC, PageProps } from "gatsby";
+import { HeadFC, Link, PageProps } from "gatsby";
 import { Navigation } from '../components/navigation';
 import { Dashboard } from '../components/dashboard';
 import { Button } from '../components/components';
@@ -48,7 +48,7 @@ const UserPage: React.FC<PageProps> = () => {
                 Se connecter
               </Button>
 
-              <a id='forgot-cred' href='/user/recovery' className='text-center pt-4 text-xs opacity-90 hover:text-blue-700 transition-colors'>Mot de passe oublié ?</a>
+              <Link id='forgot-cred' to='/user/recovery' className='text-center pt-4 text-xs opacity-90 hover:text-blue-700 transition-colors'>Mot de passe oublié ?</Link>
 
             </form>
           </div>}

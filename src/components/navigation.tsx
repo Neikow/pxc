@@ -21,9 +21,12 @@ const navigation: { name: string, link: string; }[] = [
 ];
 
 export const Navigation: React.FC<{ showDownloadButton: boolean; }> = ( p ) => {
-  if ( typeof window === 'undefined' ) return <div>Error: Window is not defined.</div>;
+  const [ currentPath, setCurrentPath ] = React.useState( '' );
 
-  const [ currentPath, setCurrentPath ] = React.useState( window.location.pathname );
+  React.useEffect( () => {
+    setCurrentPath( window.location.pathname );
+    return () => { };
+  } );
 
   return (
     <nav id='top-bar' className='w-full z-50 h-16 bg-white fixed bottom-0 lg:top-0 shadow-xl lg:shadow-lg lg:flex rounded-t-2xl lg:rounded-t-none lg:rounded-b-2xl'>
