@@ -28,7 +28,7 @@ const UserPage: React.FC<PageProps> = () => {
   return (
     <>
       <Navigation showDownloadButton={true} />
-      <main className='h-screen  w-full flex justify-center items-center'>
+      <main className='h-screen  w-full flex justify-center bg-slate-50 items-center'>
 
         {isLoggedIn ?
           <Dashboard isUserAdmin={isAdmin} username={username} /> :

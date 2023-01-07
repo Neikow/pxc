@@ -93,7 +93,7 @@ const TeamPage: React.FC<PageProps> = () => {
   return (
     <>
       <Navigation showDownloadButton={false} />
-      <main className='h-screen w-full flex flex-col items-center pt-20'>
+      <main className='h-screen w-full flex flex-col bg-slate-50 items-center pt-20 overflow-y-scroll'>
         <h2 className='text-3xl pb-2'>Notre équipe</h2>
         <div className='flex align-middle pb-8'>
           <button disabled={years.indexOf( year ) === years.length - 1} className='text-2xl  disabled:opacity-30' onClick={() => handleYearChange( 'previous' )}> {'<'} </button>
