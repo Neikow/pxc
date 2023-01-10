@@ -1,5 +1,5 @@
 import * as React from "react";
-import type { HeadFC, PageProps } from "gatsby";
+import { HeadFC, Link, PageProps } from "gatsby";
 import { Navigation } from '../components/navigation';
 
 const IndexPage: React.FC<PageProps> = () => {
@@ -23,7 +23,18 @@ const IndexPage: React.FC<PageProps> = () => {
 
         <div className='h-screen bg-slate-300 flex flex-shrink-0 flex-col items-center py-4 px-12'>
           <h2 className='text-2xl'>Derniers ajouts</h2>
-          <p> Découvrez ou redécouvrez les derniers événements de Centrale à travers des photos </p>
+          <p className='pb-4'> Découvrez ou redécouvrez les derniers événements de Centrale à travers des photos </p>
+          <div className='h-full w-full grid grid-cols-2'>
+            <div className='h-full w-full bg-red-200'>
+            </div>
+            <div className='h-full w-full bg-blue-200'>
+            </div>
+            <div className='h-full w-full bg-green-200'>
+            </div>
+            <div className='h-full w-full bg-yellow-200'>
+            </div>
+          </div>
+          <Link to='/albums?type=event&sort=recent' className='pt-4'>Voir davantage &gt;</Link>
         </div>
 
         <div className='h-screen flex flex-col flex-shrink-0 items-center py-4 px-12'>
