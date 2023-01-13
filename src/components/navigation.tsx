@@ -34,7 +34,7 @@ export const Navigation: React.FC<{ showDownloadButton: boolean }> = (p) => {
     >
       <div
         id='logo-container'
-        className='fixed top-0 px-6 py-3 text-4xl text-gray-800 lg:relative lg:flex'
+        className='fixed top-0 px-6 py-3 text-4xl w-full max-lg:bg-gradient-to-b max-lg:from-slate-200 backdrop-blur-sm text-gray-800 lg:relative lg:flex'
       >
         <Link id='home-button' to='/'>
           <h1>PxC</h1>

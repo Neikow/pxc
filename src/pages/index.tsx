@@ -34,10 +34,10 @@ const IndexPage: React.FC<PageProps> = () => {
       {/** @ts-ignore */}
       <main
         id='index-container'
-        className='relative flex h-screen flex-col overflow-y-scroll bg-slate-50 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-gray-400 scrollbar-thumb-rounded-full'
+        className='relative flex h-screen lg:snap-y snap-mandatory flex-col overflow-y-scroll bg-gradient-to-tl from-slate-300 to-gray-100 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-gray-400 scrollbar-thumb-rounded-full'
         {...scrollRestoration}
       >
-        <div className='flex h-screen flex-row'>
+        <div className='z-10 flex h-screen lg:snap-start flex-row shadow-lg'>
           <div className='flex h-screen flex-col justify-center p-12 lg:w-1/2'>
             <h1 className='text-4xl'>
               Bienvenue sur le site de l'association de photographes de l'École
@@ -71,7 +71,7 @@ const IndexPage: React.FC<PageProps> = () => {
           </div>
         </div>
 
-        <div className='flex h-auto flex-shrink-0 flex-col items-center bg-slate-300 py-4 px-12'>
+        <div className='flex h-auto flex-shrink-0 lg:snap-start lg:scroll-mt-16 flex-col items-center bg-gradient-to-tl from-slate-100 to-gray-300 py-4 px-12'>
           <h2 className='pt-2 text-3xl'>Derniers ajouts</h2>
           <p className='pb-4'>
             {' '}
@@ -96,18 +96,18 @@ const IndexPage: React.FC<PageProps> = () => {
           </div>
           <Link
             to='/albums?type=event&sort=recent'
-            className='flex pt-4'
+            className='flex pt-4 pb-4 lg:pb-2 text-lg hover:text-blue-600'
           >
             Voir plus &gt;
           </Link>
         </div>
 
-        <div className='flex h-screen flex-shrink-0 flex-col items-center py-4 px-12'>
+        <div className='fsrom-slate-300 relative z-10 flex h-full lg:snap-start scroll-mt-16 flex-shrink-0 flex-col items-center bg-gradient-to-tl from-slate-600 to-gray-800 py-4 px-12 text-white shadow-lg'>
           <h2 className='text-3xl'>Autres photos</h2>
           <p> Découvrez les photos qu'à pu prendre la Team. </p>
         </div>
 
-        <div className='flex h-screen flex-shrink-0 flex-col items-center justify-center bg-slate-300 px-12 text-center text-2xl'>
+        <div className='flex h-screen flex-shrink-0 flex-col lg:snap-start items-center justify-center bg-gradient-to-tl from-sky-200 to-gray-100 px-16 text-center text-3xl'>
           Nous sommes un groupe de photographes passionnés toujours prêt à
           déclencher
         </div>

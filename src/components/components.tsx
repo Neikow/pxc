@@ -52,6 +52,11 @@ export const AlbumCard: React.FC<{
       }
     >
       <button
+        title={
+          "Voir l'album " +
+          p.title +
+          (p.year && p.year !== p.title ? ' ' + p.year : '')
+        }
         onTouchStart={() => {
           timer = window.setTimeout(function () {
             alert('Hello');
@@ -75,7 +80,7 @@ export const AlbumCard: React.FC<{
           <div className='absolute bottom-4 right-4'>{p.count} Photos</div>
         </div>
 
-        <div className='h-full w-full overflow-hidden lg:max-w-[66.67%]'>
+        <div className='h-full w-full overflow-hidden rounded-r-lg lg:max-w-[66.67%]'>
           <img
             className='h-full w-full rounded-r-lg object-cover transition-all group-hover:scale-105 group-hover:opacity-80'
             src={`https://source.unsplash.com/featured/300x200?${p.id}`}
