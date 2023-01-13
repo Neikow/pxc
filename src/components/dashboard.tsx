@@ -16,6 +16,30 @@ export const Dashboard: React.FC<{ isUserAdmin: boolean; username: string }> = (
 
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
+  React.useEffect(() => {
+    console.log('isMenuOpen: ', isMenuOpen);
+    const dropdownOutside = document.getElementById('dropdown-outside');
+    const dropdownMenu = document.getElementById('dropdown-menu');
+
+    if (!dropdownMenu || !dropdownOutside) {
+      return;
+    }
+
+    if (isMenuOpen) {
+      dropdownMenu.style.display = 'block';
+      dropdownOutside.style.display = 'block';
+      window.setTimeout(() => {
+        dropdownMenu.style.opacity = '1';
+      }, 10);
+    } else {
+      dropdownOutside.style.display = 'none';
+      dropdownMenu.style.opacity = '0';
+      window.setTimeout(() => {
+        dropdownMenu.style.display = 'none';
+      }, 150);
+    }
+  }, [isMenuOpen]);
+
   return (
     <div className='h-full w-full'>
       <div
@@ -27,14 +51,14 @@ export const Dashboard: React.FC<{ isUserAdmin: boolean; username: string }> = (
             setIsMenuOpen(!isMenuOpen);
           }}
           id='dashboard-menu'
-          className='absolute top-0 right-0 flex justify-between p-4 text-lg text-gray-800 lg:top-16'
+          className='fixed top-0 right-0 flex justify-between p-4 text-lg text-gray-800 lg:top-16'
         >
           <div className='mr-2 h-6 w-6 fill-gray-600'>
             <svg
-              clip-rule='evenodd'
-              fill-rule='evenodd'
-              stroke-linejoin='round'
-              stroke-miterlimit='2'
+              clipRule='evenodd'
+              fillRule='evenodd'
+              strokeLinejoin='round'
+              strokeMiterlimit='2'
               viewBox='0 0 24 24'
               xmlns='http://www.w3.org/2000/svg'
             >
@@ -44,28 +68,25 @@ export const Dashboard: React.FC<{ isUserAdmin: boolean; username: string }> = (
           Hello, {p.username} !
         </button>
 
-        {isMenuOpen && (
-          <div
-            onClick={(e) => {
-              setIsMenuOpen(false);
-              e.stopPropagation();
-              e.preventDefault();
-            }}
-            id='dropdown-outside'
-            className='fixed top-0 z-20 h-screen w-screen bg-slate-300 opacity-0'
-          ></div>
-        )}
+        <div
+          onClick={(e) => {
+            setIsMenuOpen(false);
+            e.stopPropagation();
+            e.preventDefault();
+          }}
+          id='dropdown-outside'
+          className='fixed top-0 z-20 h-screen w-screen bg-slate-300 opacity-0'
+        ></div>
 
         <div
-          id='dropdown'
+          id='dropdown-menu'
           className={
-            'right-0 z-30 w-96 bg-red-100' +
-            (isMenuOpen ? ' h-100 absolute' : ' hidden h-0')
+            'fixed right-4 z-30 rounded-xl bg-white p-4 pl-12 shadow-md transition-opacity'
           }
         >
-          <div className='flex flex-col'>
-            <div>Hello</div>
-            <div>World</div>
+          <div className='flex flex-col space-y-4'>
+            <button className='text-end'>Contacter un administrateur</button>
+            <button className='text-end text-red-700'>Se déconnecter</button>
           </div>
         </div>
 

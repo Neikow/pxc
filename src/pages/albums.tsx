@@ -2,50 +2,7 @@ import * as React from 'react';
 import { HeadFC, PageProps, navigate } from 'gatsby';
 import { Navigation } from '../components/navigation';
 import { AlbumCard } from '../components/components';
-
-type Album = {
-  title: string;
-  date: string;
-  year: string;
-  visits: number;
-  count: number;
-  id: string;
-};
-
-const Albums: Album[] = [
-  {
-    id: '2021-2022',
-    title: '2021-2022',
-    year: '2021-2022',
-    date: '2021-08-01',
-    visits: 100,
-    count: 200,
-  },
-  {
-    id: '2020-2021',
-    title: '2020-2021',
-    year: '2020-2021',
-    date: '2020-08-01',
-    visits: 200,
-    count: 100,
-  },
-  {
-    id: 'rcm-2021',
-    title: 'RCM',
-    year: '2020-2021',
-    date: '2021-03-01',
-    visits: 200,
-    count: 150,
-  },
-  {
-    id: 'rcm-2022',
-    title: 'RCM',
-    year: '2021-2022',
-    date: '2022-03-08',
-    visits: 250,
-    count: 200,
-  },
-];
+import Albums, { Album } from '../data/albums';
 
 const UserPage: React.FC<PageProps> = () => {
   const defaultAlbumSort = 'recent';
@@ -95,7 +52,7 @@ const UserPage: React.FC<PageProps> = () => {
     <>
       <Navigation showDownloadButton={true} />
       <main className='flex h-screen w-full flex-col items-center bg-slate-50 pt-16 lg:pt-20'>
-        <div className='flex w-full flex-col items-center shadow-lg'>
+        <div className='flex w-full flex-col items-center rounded-b-xl shadow-lg'>
           <h2 className='pb-2 text-2xl md:text-3xl'>
             Albums {'[' + Albums.length + ']'}
           </h2>
@@ -157,7 +114,7 @@ const UserPage: React.FC<PageProps> = () => {
           </div>
         </div>
 
-        <div className='mb-16 flex h-full w-full flex-col items-center overflow-y-auto lg:mb-0'>
+        <div className='mb-16 flex h-full w-full flex-col items-center overflow-y-auto scrollbar-thin scrollbar-track-transparent scrollbar-thumb-gray-400 scrollbar-thumb-rounded-full lg:mb-0'>
           {Albums.sort(sorter).map((album) => (
             <AlbumCard
               key={album.id}
@@ -165,6 +122,7 @@ const UserPage: React.FC<PageProps> = () => {
               title={album.title}
               year={album.year}
               id={album.id}
+              className='h-1/3 p-4 md:w-5/6 lg:w-4/6 xl:w-3/6'
             />
           ))}
         </div>

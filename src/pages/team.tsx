@@ -32,16 +32,25 @@ const Teams: Teams = {
         name: 'B',
         role: 'Président',
         imgPath: 'https://source.unsplash.com/featured/400x301',
+        socials: {
+          instagram: 'https://www.instagram.com/pxc.marseille/',
+        },
       },
       {
         name: 'C',
         role: 'Président',
         imgPath: 'https://source.unsplash.com/featured/400x302',
+        socials: {
+          facebook: 'https://www.facebook.com/pxcmarseille',
+        },
       },
       {
         name: 'D',
         role: 'Président',
         imgPath: 'https://source.unsplash.com/featured/400x303',
+        socials: {
+          linkedin: 'https://twitter.com/pxcmarseille',
+        },
       },
     ],
   },
@@ -93,12 +102,14 @@ const TeamPage: React.FC<PageProps> = () => {
     }
   };
 
+  React.useEffect(() => {});
+
   console.log(year);
 
   return (
     <>
       <Navigation showDownloadButton={false} />
-      <main className='flex h-screen w-full flex-col items-center overflow-y-scroll bg-slate-50 pt-20'>
+      <main className='flex h-screen w-full flex-col items-center overflow-y-scroll bg-slate-50 pt-20 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-gray-400 scrollbar-thumb-rounded-full'>
         <h2 className='pb-2 text-3xl'>Notre équipe</h2>
         <div className='flex pb-8 align-middle'>
           <button
@@ -106,8 +117,7 @@ const TeamPage: React.FC<PageProps> = () => {
             className='text-2xl  disabled:opacity-30'
             onClick={() => handleYearChange('previous')}
           >
-            {' '}
-            {'<'}{' '}
+            {' < '}
           </button>
           <p className='w-52 text-center text-2xl'>{year}</p>
           <button
@@ -115,8 +125,7 @@ const TeamPage: React.FC<PageProps> = () => {
             onClick={() => handleYearChange('next')}
             className='text-2xl disabled:opacity-30'
           >
-            {' '}
-            {'>'}{' '}
+            {' > '}
           </button>
         </div>
         <p className='pb-8'>{Teams[year].word}</p>
@@ -135,7 +144,7 @@ const TeamPage: React.FC<PageProps> = () => {
                 </div>
 
                 <div className='flex w-full flex-col items-center p-4'>
-                  <p className='text-xl'>{e.name}</p>
+                  <p className='text-2xl'>{e.name}</p>
                   <p className='text-md'>{e.role}</p>
                   {e.socials && (
                     <div className='flex pt-2'>
@@ -144,7 +153,7 @@ const TeamPage: React.FC<PageProps> = () => {
                           href={e.socials.instagram}
                           target='_blank'
                           rel='noreferrer'
-                          className='mx-6 flex w-1/3 items-center justify-center'
+                          className='mx-6 flex w-1/3 items-center justify-center fill-blue-600'
                         >
                           <svg
                             xmlns='http://www.w3.org/2000/svg'
@@ -161,7 +170,7 @@ const TeamPage: React.FC<PageProps> = () => {
                           href={e.socials.facebook}
                           target='_blank'
                           rel='noreferrer'
-                          className='mx-6 flex w-1/3 items-center justify-center'
+                          className='mx-6 flex w-1/3 items-center justify-center fill-blue-600'
                         >
                           <svg
                             xmlns='http://www.w3.org/2000/svg'
@@ -178,7 +187,7 @@ const TeamPage: React.FC<PageProps> = () => {
                           href={e.socials.linkedin}
                           target='_blank'
                           rel='noreferrer'
-                          className='mx-6 flex w-1/3 items-center justify-center'
+                          className='mx-6 flex w-1/3 items-center justify-center fill-blue-600'
                         >
                           <svg
                             xmlns='http://www.w3.org/2000/svg'

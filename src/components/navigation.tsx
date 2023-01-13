@@ -1,4 +1,4 @@
-import { Link } from 'gatsby';
+import { Link, withPrefix } from 'gatsby';
 import * as React from 'react';
 
 const navigation: { name: string; link: string }[] = [
@@ -36,7 +36,7 @@ export const Navigation: React.FC<{ showDownloadButton: boolean }> = (p) => {
         id='logo-container'
         className='fixed top-0 px-6 py-3 text-4xl text-gray-800 lg:relative lg:flex'
       >
-        <Link to='/'>
+        <Link id='home-button' to='/'>
           <h1>PxC</h1>
         </Link>
       </div>
@@ -57,12 +57,12 @@ export const Navigation: React.FC<{ showDownloadButton: boolean }> = (p) => {
                 to={e.link}
                 className={
                   'flex justify-center align-middle text-lg transition-colors hover:text-blue-700' +
-                  (currentPath.startsWith(e.link)
+                  (withPrefix(currentPath).startsWith(e.link)
                     ? ' text-blue-600'
                     : ' text-gray-800')
                 }
               >
-                <div className='flex items-center px-2 text-sm md:px-8 md:text-base lg:text-lg'>
+                <div className='text-md flex items-center px-4 md:px-8 lg:text-lg'>
                   {e.name}
                 </div>
               </Link>

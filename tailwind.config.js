@@ -7,8 +7,8 @@ module.exports = {
   theme: {
     fontFamily: {
       display: ['"Montserrat"', 'sans-serif'],
-      body: ['"Montserrat"', 'sans-serif']
+      body: ['"Montserrat"', 'sans-serif'],
     },
   },
-  plugins: [],
+  plugins: [require('tailwind-scrollbar')({ nocompatible: true })],
 };

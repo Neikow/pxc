@@ -40,12 +40,17 @@ export const AlbumCard: React.FC<{
   title: string;
   year?: string;
   count: number;
+  className?: string;
 }> = (p) => {
   const holdTimeout = 500;
   let timer: number;
 
   return (
-    <div className='flex h-1/3 w-full flex-shrink-0 p-4 md:w-5/6 lg:w-4/6 xl:w-3/6'>
+    <div
+      className={
+        'flex w-full flex-shrink-0' + (p.className ? ' ' + p.className : '')
+      }
+    >
       <button
         onTouchStart={() => {
           timer = window.setTimeout(function () {
@@ -62,7 +67,7 @@ export const AlbumCard: React.FC<{
         className='group relative flex w-full flex-row items-center justify-between rounded-lg bg-white shadow-lg outline-blue-500 transition-colors hover:bg-blue-200'
       >
         <div className='relative flex h-full w-full flex-col items-start p-4'>
-          <div className='flex h-full w-1/2 flex-col items-start justify-center'>
+          <div className='flex h-full w-full flex-col items-start justify-center'>
             <h3 className='text-2xl'>{p.title}</h3>
             <h4 className='text-lg'>{p.title !== p.year && p.year}</h4>
           </div>
@@ -70,11 +75,13 @@ export const AlbumCard: React.FC<{
           <div className='absolute bottom-4 right-4'>{p.count} Photos</div>
         </div>
 
-        <img
-          className='h-full w-full rounded-r-lg object-cover transition-opacity group-hover:opacity-80 lg:w-2/3'
-          src={`https://source.unsplash.com/featured/300x200?${p.id}`}
-          alt={p.id + '-cover'}
-        />
+        <div className='h-full w-full overflow-hidden lg:max-w-[66.67%]'>
+          <img
+            className='h-full w-full rounded-r-lg object-cover transition-all group-hover:scale-105 group-hover:opacity-80'
+            src={`https://source.unsplash.com/featured/300x200?${p.id}`}
+            alt={p.id + '-cover'}
+          />
+        </div>
 
         <button
           onClick={(e) => {

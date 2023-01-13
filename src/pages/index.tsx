@@ -1,22 +1,49 @@
 import * as React from 'react';
-import { HeadFC, Link, PageProps } from 'gatsby';
+import { HeadFC, Link, PageProps, useScrollRestoration } from 'gatsby';
 import { Navigation } from '../components/navigation';
+import Albums from '../data/albums';
+import { AlbumCard } from '../components/components';
 
 const IndexPage: React.FC<PageProps> = () => {
+  const scrollRestoration = useScrollRestoration(`index-page-main`);
+
+  React.useEffect(() => {
+    const mainContainer = document.getElementById('index-container');
+
+    if (!mainContainer) return;
+
+    const clickHandler = () => {
+      mainContainer.scrollTo({ top: 0 });
+    };
+
+    const buttonElement = document.getElementById('home-button');
+
+    if (buttonElement) buttonElement.addEventListener('click', clickHandler);
+
+    return () => {
+      // Cleanup
+
+      if (buttonElement)
+        buttonElement.removeEventListener('click', clickHandler);
+    };
+  });
+
   return (
     <>
       <Navigation showDownloadButton={false} />
+      {/** @ts-ignore */}
       <main
         id='index-container'
-        className='relative flex h-screen flex-col overflow-y-scroll bg-slate-50'
+        className='relative flex h-screen flex-col overflow-y-scroll bg-slate-50 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-gray-400 scrollbar-thumb-rounded-full'
+        {...scrollRestoration}
       >
         <div className='flex h-screen flex-row'>
-          <div className='flex h-screen  flex-col justify-center p-12 lg:w-1/2'>
+          <div className='flex h-screen flex-col justify-center p-12 lg:w-1/2'>
             <h1 className='text-4xl'>
               Bienvenue sur le site de l'association de photographes de l'École
               Centrale de Marseille
             </h1>
-            <p className='text-xl'>
+            <p className='pt-2 text-xl'>
               Vous trouverez ici toutes les photos de votre passage à l'école
             </p>
             <p className='text-xl'>
@@ -44,29 +71,39 @@ const IndexPage: React.FC<PageProps> = () => {
           </div>
         </div>
 
-        <div className='flex h-screen flex-shrink-0 flex-col items-center bg-slate-300 py-4 px-12'>
-          <h2 className='text-2xl'>Derniers ajouts</h2>
+        <div className='flex h-auto flex-shrink-0 flex-col items-center bg-slate-300 py-4 px-12'>
+          <h2 className='pt-2 text-3xl'>Derniers ajouts</h2>
           <p className='pb-4'>
             {' '}
             Découvrez ou redécouvrez les derniers événements de Centrale à
             travers des photos{' '}
           </p>
-          <div className='grid h-full w-full grid-cols-2'>
-            <div className='h-full w-full bg-red-200'></div>
-            <div className='h-full w-full bg-blue-200'></div>
-            <div className='h-full w-full bg-green-200'></div>
-            <div className='h-full w-full bg-yellow-200'></div>
+          <div className='grid h-full w-full grid-cols-1 lg:grid-cols-2'>
+            {Albums.sort((a, b) => {
+              return Date.parse(a.date) > Date.parse(b.date) ? -1 : 1;
+            })
+              .slice(0, 4)
+              .map((album) => (
+                <AlbumCard
+                  key={album.id}
+                  count={album.count}
+                  title={album.title}
+                  year={album.year}
+                  id={album.id}
+                  className='p-4 lg:p-8'
+                />
+              ))}
           </div>
           <Link
             to='/albums?type=event&sort=recent'
-            className='pt-4'
+            className='flex pt-4'
           >
-            Voir davantage &gt;
+            Voir plus &gt;
           </Link>
         </div>
 
         <div className='flex h-screen flex-shrink-0 flex-col items-center py-4 px-12'>
-          <h2 className='text-2xl'>Autres photos</h2>
+          <h2 className='text-3xl'>Autres photos</h2>
           <p> Découvrez les photos qu'à pu prendre la Team. </p>
         </div>
 
